@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<title>100 Days Better Me</title>
+<link rel="stylesheet" href="style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Top Navigation (Desktop) -->
+<nav class="navbar navbar-top">
+  <h1 class="logo">100 Days Better Me</h1>
+  <div class="nav-links nav-links-top">
+    <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+    <button class="nav-btn" data-page="progress">100 Days</button>
+    <button class="nav-btn" data-page="motivation">Motivation</button>
+    <button class="nav-btn restart-nav-btn" onclick="restartChallenge()" title="Restart Challenge">🔄 Restart</button>
+  </div>
+</nav>
+
+<!-- Bottom Navigation (Mobile) -->
+<nav class="navbar-bottom">
+  <button class="nav-btn-bottom active" data-page="dashboard">
+    <span class="nav-icon">📊</span>
+    <span class="nav-label">Dashboard</span>
+  </button>
+  <button class="nav-btn-bottom" data-page="progress">
+    <span class="nav-icon">📅</span>
+    <span class="nav-label">Progress</span>
+  </button>
+  <button class="nav-btn-bottom" data-page="motivation">
+    <span class="nav-icon">💪</span>
+    <span class="nav-label">Motivation</span>
+  </button>
+  <button class="nav-btn-bottom restart-nav-btn-mobile" onclick="restartChallenge()" title="Restart Challenge">
+    <span class="nav-icon">🔄</span>
+    <span class="nav-label">Restart</span>
+  </button>
+</nav>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page active">
+
+  <div class="hero">
+    <h1>Day <span id="currentDay">1</span><br>Become Better Than Yesterday</h1>
+
+    <div class="hero-stats">
+      <div class="stat-box">
+        <p>Streak</p>
+        <h2 id="streak">0 🔥</h2>
+      </div>
+      <div class="stat-box">
+        <p>Score</p>
+        <h2 id="score">0%</h2>
+      </div>
+      <div class="stat-box">
+        <p>Progress</p>
+        <h2 id="progress">0 / 100</h2>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Today's Habits</h2>
+
+  <div class="habit-grid">
+
+    <div class="habit-card" data-habit="sleep">
+      <h3>😴 Sleep (≥7 hrs) <span class="tick-icon" id="tick-sleep" style="display:none;">✔</span></h3>
+      <input type="number" id="sleep" placeholder="Hours slept" min="0" max="24" step="0.5">
+      <button onclick="saveHabit('sleep')">Save</button>
+      <div class="progress-bar"><div class="progress-fill" id="progress-sleep"></div></div>
+    </div>
+
+    <div class="habit-card" data-habit="water">
+      <h3>💧 Water (≥8 glasses) <span class="tick-icon" id="tick-water" style="display:none;">✔</span></h3>
+      <input type="number" id="water" placeholder="Glasses" min="0" max="20">
+      <button onclick="saveHabit('water')">Save</button>
+      <div class="progress-bar"><div class="progress-fill" id="progress-water"></div></div>
+    </div>
+
+    <div class="habit-card" data-habit="workout">
+      <h3>💪 Workout (≥30 min) <span class="tick-icon" id="tick-workout" style="display:none;">✔</span></h3>
+      <input type="number" id="workout" placeholder="Minutes" min="0" max="300">
+      <button onclick="saveHabit('workout')">Save</button>
+      <div class="progress-bar"><div class="progress-fill" id="progress-workout"></div></div>
+    </div>
+
+    <div class="habit-card" data-habit="study">
+      <h3>📚 Study (≥60 min) <span class="tick-icon" id="tick-study" style="display:none;">✔</span></h3>
+      <input type="number" id="study" placeholder="Minutes" min="0" max="600">
+      <button onclick="saveHabit('study')">Save</button>
+      <div class="progress-bar"><div class="progress-fill" id="progress-study"></div></div>
+    </div>
+
+    <div class="habit-card" data-habit="food">
+      <h3>🥗 Food (2000-2500 cal) <span class="tick-icon" id="tick-food" style="display:none;">✔</span></h3>
+      <input type="number" id="food" placeholder="Calories consumed" min="0" max="5000" step="10">
+      <button onclick="saveHabit('food')">Save</button>
+      <div class="progress-bar"><div class="progress-fill" id="progress-food"></div></div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- 100 DAYS -->
+<section id="progressPage" class="page">
+  <h2 class="section-title">100 Days Progress</h2>
+  <div class="calendar" id="calendar"></div>
+  <div id="day-details" style="display:none; margin-top:2rem; padding:1.5rem; background:rgba(26,35,50,0.6); border-radius:12px;">
+    <h3>Day <span id="selected-day-num"></span> Details</h3>
+    <div id="day-details-content"></div>
+    <button onclick="closeDayDetails()" style="margin-top:1rem; padding:0.6rem 1.5rem; background:linear-gradient(135deg,#6366f1,#8b5cf6); border:none; color:#fff; border-radius:8px; cursor:pointer;">Close</button>
+  </div>
+</section>
+
+<!-- MOTIVATION -->
+<section id="motivation" class="page">
+  <h2 class="section-title">Why I Started</h2>
+  <textarea id="why" placeholder="Write your reason..."></textarea>
+  <button onclick="saveWhy()">Save</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
